@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 
 
 def load_and_split(
-   path: str = str(BASE_DIR / "data" / "reviews.csv"),
+   path: str = str(BASE_DIR / "data" / "incidente.csv"),
     test_size: float = 0.2,
     seed: int = 42,
 ):
@@ -29,19 +29,19 @@ def load_and_split(
     Retorna:
         X_train, X_test, y_train, y_test
     """
-    df = pd.read_csv(path)
+    df = pd.read_csv(path, sep=";")
 
     # Remove linhas sem texto ou sem rótulo
-    df = df.dropna(subset=["texto", "sentimento"])
+    df = df.dropna(subset=["detalhe_incidente", "tipo_incidente"])
 
     # Remove linhas com texto vazio
-    df = df[df["texto"].str.strip() != ""]
+    df = df[df["detalhe_incidente"].str.strip() != ""]
 
     # Normalização básica do texto (minúsculas + remover espaços extras)
-    df["texto"] = df["texto"].str.lower().str.strip()
+    df["detalhe_incidente"] = df["detalhe_incidente"].str.lower().str.strip()
 
-    X = df["texto"]
-    y = df["sentimento"]
+    X = df["detalhe_incidente"]
+    y = df["tipo_incidente"]
 
     # stratify=y garante que a proporção de classes seja igual em treino e teste
     return train_test_split(

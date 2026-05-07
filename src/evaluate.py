@@ -38,7 +38,7 @@ os.environ["MLFLOW_TRACKING_PASSWORD"] = DAGSHUB_TOKEN
 def main():
     # URI para o modelo mais recente no registro
     # "latest" sempre pega a última versão promovida
-    model_uri = "models:/SentimentClassifier@production"
+    model_uri = "models:/IT_Incident_Classifier@production"
 
     print(f"Baixando modelo: {model_uri}")
     print(f"Fonte: https://dagshub.com/{DAGSHUB_USER}/{DAGSHUB_REPO}")

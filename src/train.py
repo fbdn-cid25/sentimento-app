@@ -43,7 +43,7 @@ os.environ["MLFLOW_TRACKING_USERNAME"] = DAGSHUB_USER
 os.environ["MLFLOW_TRACKING_PASSWORD"] = DAGSHUB_TOKEN
 
 # Nome do experimento no MLflow (agrupa todos os runs)
-mlflow.set_experiment("analise-sentimento")
+mlflow.set_experiment("incidentes-ti")
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -114,12 +114,10 @@ def main():
             "f1_weighted": f1,
         })
 
-        # 6. Registra o modelo no MLflow Model Registry
-        # registered_model_name cria/atualiza o modelo no registro central
         mlflow.sklearn.log_model(
             sk_model=pipeline,
             artifact_path="model",
-            registered_model_name="SentimentClassifier",
+            registered_model_name="IT_Incident_Classifier",
         )
 
         print(f"\nRun '{RUN_NAME}' finalizado com sucesso!")
